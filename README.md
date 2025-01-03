@@ -17,3 +17,8 @@ This Flutter app demonstrates a shopping interface featuring:
     Confirm Password must match the Password.
     Displays appropriate error messages using Validator.
     On successful sign-up, shows a success dialog and navigates to the shopping screen.
+
+## Animations:
+- After signing up successfully, a fade-out animation transitions from the Signup   
+  Page to the Shopping Page.
+- Customizable animation duration.

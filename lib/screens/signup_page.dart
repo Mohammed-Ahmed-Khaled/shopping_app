@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/widgets/text_widget.dart';
 import 'package:shopping_app/widgets/text_formfield.dart';
+import 'package:shopping_app/animation/fade.dart';
 import 'package:shopping_app/screens/shopping_homepage.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -60,8 +61,9 @@ class SignUpPageState extends State<SignUpPage> {
                 Navigator.of(context).pop(); // Close dialog
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const ShoppingHomePage()),
+                  AnimatedPageTransition(
+                    page: const ShoppingHomePage(),
+                  ),
                 );
               },
               child: const Text("Close"),
