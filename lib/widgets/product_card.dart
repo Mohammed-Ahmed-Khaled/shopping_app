@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/models/product_model.dart';
 import 'package:shopping_app/widgets/snakbar_widget.dart';
+import 'package:shopping_app/generated/l10n.dart';
 
 class ProductCard extends StatefulWidget {
   final ProductModel product;
@@ -41,7 +42,7 @@ class _ProductCardState extends State<ProductCard> {
             const SizedBox(height: 10),
             IconButton(
               onPressed: () {
-                CustomSnackBar.show(context, "Item added to the cart");
+                CustomSnackBar.show(context, S.of(context).addedToCart);
               },
               icon: widget.product.icon,
             ),

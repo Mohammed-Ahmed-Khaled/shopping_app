@@ -1,0 +1,14 @@
+{
+  "appTitle": "تطبيق التسوق",
+  "ourProducts": "منتجاتنا",
+  "hotOffers": "العروض المميزة",
+  "addedToCart": "تمت إضافة المنتج إلى السلة",
+  "signUp": "تسجيل الدخول",
+  "fullName": "الاسم الكامل",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "close": "إغلاق",
+  "success": "نجاح",
+  "accountCreated": "تم إنشاء الحساب بنجاح"
+}

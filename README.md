@@ -22,3 +22,7 @@ This Flutter app demonstrates a shopping interface featuring:
 - After signing up successfully, a fade-out animation transitions from the Signup   
   Page to the Shopping Page.
 - Customizable animation duration.
+
+## Supported Languages
+- English (Default)
+- Arabic (RTL support)

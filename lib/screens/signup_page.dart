@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/widgets/text_widget.dart';
-import 'package:shopping_app/widgets/text_formfield.dart';
 import 'package:shopping_app/animation/fade.dart';
+import 'package:shopping_app/generated/l10n.dart';
 import 'package:shopping_app/screens/shopping_homepage.dart';
+import 'package:shopping_app/widgets/text_formfield.dart';
+import 'package:shopping_app/widgets/text_widget.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+  final VoidCallback toggleLanguage;
+  const SignUpPage({
+    super.key,
+    required this.toggleLanguage,
+  });
 
   @override
   State<SignUpPage> createState() => SignUpPageState();
@@ -53,8 +58,8 @@ class SignUpPageState extends State<SignUpPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text("Success"),
-          content: const Text("Account created successfully"),
+          title: Text(S.of(context).success),
+          content: Text(S.of(context).accountCreated),
           actions: [
             TextButton(
               onPressed: () {
@@ -62,11 +67,12 @@ class SignUpPageState extends State<SignUpPage> {
                 Navigator.pushReplacement(
                   context,
                   AnimatedPageTransition(
-                    page: const ShoppingHomePage(),
+                    page:
+                        ShoppingHomePage(togglelanguage: widget.toggleLanguage),
                   ),
                 );
               },
-              child: const Text("Close"),
+              child: Text(S.of(context).close),
             ),
           ],
         ),
@@ -78,10 +84,16 @@ class SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TextWidget(
-          text: 'Sign Up',
+        title: TextWidget(
+          text: S.of(context).signUp,
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.language),
+            onPressed: widget.toggleLanguage, // Toggle between languages
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -90,21 +102,21 @@ class SignUpPageState extends State<SignUpPage> {
           child: ListView(
             children: [
               TextFormFieldWidget(
-                labelText: "Full Name",
+                labelText: S.of(context).fullName,
                 controller: _fullNameController,
                 validator: _validateFullName,
                 prefixIcon: Icons.person,
               ),
               TextFormFieldWidget(
-                labelText: "Email",
+                labelText: S.of(context).email,
                 keyboardType: TextInputType.emailAddress,
                 controller: _emailController,
                 validator: _validateEmail,
                 prefixIcon: Icons.email,
               ),
               TextFormFieldWidget(
+                labelText: S.of(context).password,
                 obscureText: _passwordVisible,
-                labelText: "Password",
                 controller: _passwordController,
                 validator: _validatePassword,
                 prefixIcon: Icons.lock,
@@ -120,8 +132,8 @@ class SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               TextFormFieldWidget(
+                labelText: S.of(context).confirmPassword,
                 obscureText: _passwordVisible,
-                labelText: "Confirm Password",
                 controller: _confirmPasswordController,
                 validator: _validateConfirmPassword,
                 prefixIcon: Icons.lock,
@@ -139,7 +151,7 @@ class SignUpPageState extends State<SignUpPage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _submitForm,
-                child: const Text("Sign Up"),
+                child: Text(S.of(context).signUp),
               ),
             ],
           ),
