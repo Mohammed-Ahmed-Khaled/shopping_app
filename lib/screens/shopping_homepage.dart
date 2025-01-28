@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/animation/fade.dart';
+import 'package:shopping_app/screens/login_page.dart';
+import 'package:shopping_app/screens/signup_page.dart';
 import 'package:shopping_app/widgets/text_widget.dart';
 import 'package:shopping_app/widgets/product_page_view.dart';
 import 'package:shopping_app/widgets/products_grid_view.dart';
@@ -6,9 +10,9 @@ import 'package:shopping_app/widgets/offers_list_view.dart';
 import 'package:shopping_app/generated/l10n.dart';
 
 class ShoppingHomePage extends StatefulWidget {
-  final VoidCallback togglelanguage;
+  final VoidCallback toggleLanguage;
 
-  const ShoppingHomePage({super.key, required this.togglelanguage});
+  const ShoppingHomePage({super.key, required this.toggleLanguage});
 
   @override
   State<ShoppingHomePage> createState() => ShoppingHomePageState();
@@ -26,7 +30,21 @@ class ShoppingHomePageState extends State<ShoppingHomePage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.language),
-            onPressed: widget.togglelanguage, // Toggle between languages
+            onPressed: widget.toggleLanguage, // Toggle between languages
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushReplacement(
+                context,
+                AnimatedPageTransition(
+                  page: LoginPage(
+                    toggleLanguage: widget.toggleLanguage,
+                  ),
+                ),
+              );
+            }, // Toggle between languages
           ),
         ],
       ),

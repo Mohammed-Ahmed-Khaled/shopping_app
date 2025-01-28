@@ -71,7 +71,7 @@ class SignUpPageState extends State<SignUpPage> {
         Navigator.pushReplacement(
           context,
           AnimatedPageTransition(
-            page: ShoppingHomePage(togglelanguage: widget.toggleLanguage),
+            page: ShoppingHomePage(toggleLanguage: widget.toggleLanguage),
           ),
         );
       } catch (e) {

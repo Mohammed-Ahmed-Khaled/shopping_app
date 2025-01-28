@@ -26,3 +26,8 @@ This Flutter app demonstrates a shopping interface featuring:
 ## Supported Languages
 - English (Default)
 - Arabic (RTL support)
+
+## Firebase Auth
+- Using Firebase Authentication to let users authenticate with Firebase using email addresses and passwords.
+- Creating a new user account with a password by calling the createUserWithEmailAndPassword() method.
+- Signing in a user with a password by calling signInWithEmailAndPassword() method.

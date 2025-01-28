@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
           context,
           AnimatedPageTransition(
-            page: ShoppingHomePage(togglelanguage: widget.toggleLanguage),
+            page: ShoppingHomePage(toggleLanguage: widget.toggleLanguage),
           ),
         );
       } catch (e) {
