@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/animation/fade.dart';
 import 'package:shopping_app/generated/l10n.dart';
 import 'package:shopping_app/screens/shopping_homepage.dart';
 import 'package:shopping_app/screens/signup_page.dart';
+import 'package:shopping_app/widgets/snakbar_widget.dart';
 import 'package:shopping_app/widgets/text_form_field.dart';
 import 'package:shopping_app/widgets/text_widget.dart';
 
@@ -38,32 +40,27 @@ class _LoginPageState extends State<LoginPage> {
     return null;
   }
 
-  void _logIn() {
+  void _logIn() async {
     if (_formKey.currentState!.validate()) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(S.of(context).success),
-          content: Text(S.of(context).accountCreated),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.pushReplacement(
-                  context,
-                  AnimatedPageTransition(
-                    page:
-                        ShoppingHomePage(togglelanguage: widget.toggleLanguage),
-                  ),
-                );
-              },
-              child: Text(
-                S.of(context).close,
-              ),
-            ),
-          ],
-        ),
-      );
+      try {
+        final credential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+        Navigator.pushReplacement(
+          context,
+          AnimatedPageTransition(
+            page: ShoppingHomePage(togglelanguage: widget.toggleLanguage),
+          ),
+        );
+      } catch (e) {
+        CustomSnackBar.show(
+          context,
+          e.toString(),
+        );
+        return;
+      }
     }
   }
 
