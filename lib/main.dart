@@ -1,9 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/screens/signup_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shopping_app/generated/l10n.dart';
+import 'package:shopping_app/screens/signup_page.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
@@ -15,7 +21,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _currentLocale = const Locale('en', '');
+  Locale _currentLocale = const Locale('en');
 
   void _toggleLanguage() {
     setState(() {

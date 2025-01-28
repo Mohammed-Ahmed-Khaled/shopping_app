@@ -35,7 +35,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "hotOffers": MessageLookupByLibrary.simpleMessage("العروض المميزة"),
         "ourProducts": MessageLookupByLibrary.simpleMessage("منتجاتنا"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
-        "signUp": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-        "success": MessageLookupByLibrary.simpleMessage("نجاح")
+        "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "success": MessageLookupByLibrary.simpleMessage("نجاح"),
+        "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "alreadyHaveAccount":
+            MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل ؟"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("ليس لديك حساب ؟"),
       };
 }

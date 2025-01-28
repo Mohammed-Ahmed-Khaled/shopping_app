@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/widgets/text_widget.dart';
 import 'package:shopping_app/widgets/product_page_view.dart';
-import 'package:shopping_app/widgets/product_grid_view.dart';
-import 'package:shopping_app/widgets/offer_list_view.dart';
+import 'package:shopping_app/widgets/products_grid_view.dart';
+import 'package:shopping_app/widgets/offers_list_view.dart';
 import 'package:shopping_app/generated/l10n.dart';
 
 class ShoppingHomePage extends StatefulWidget {

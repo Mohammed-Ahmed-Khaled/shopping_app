@@ -36,6 +36,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "ourProducts": MessageLookupByLibrary.simpleMessage("Our Products"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
-        "success": MessageLookupByLibrary.simpleMessage("Success")
+        "success": MessageLookupByLibrary.simpleMessage("Success"),
+        "login": MessageLookupByLibrary.simpleMessage("Log In"),
+        "alreadyHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Already have an account ?"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Don't have an account ?"),
       };
 }

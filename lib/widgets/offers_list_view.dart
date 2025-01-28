@@ -14,10 +14,11 @@ class OfferListView extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: offers.length,
         itemBuilder: (ctx, index) {
+          var offer = offers[index];
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: OfferCard(
-              offer: offers[index],
+              offer: offer,
             ),
           );
         },

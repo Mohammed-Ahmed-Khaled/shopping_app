@@ -1,14 +1,17 @@
 {
-  "appTitle": "Shopping App",
-  "ourProducts": "Our Products",
-  "hotOffers": "Hot Offers",
-  "addedToCart": "Item added to the cart",
-  "signUp": "Sign Up",
-  "fullName": "Full Name",
-  "email": "Email",
-  "password": "Password",
-  "confirmPassword": "Confirm Password",
-  "close": "Close",
-  "success": "Success",
-  "accountCreated": "Account created successfully"
-}
+    "appTitle": "Shopping App",
+    "ourProducts": "Our Products",
+    "hotOffers": "Hot Offers",
+    "addedToCart": "Item added to the cart",
+    "signUp": "Sign Up",
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "close": "Close",
+    "success": "Success",
+    "accountCreated": "Account created successfully",
+    "login": "Login",
+    "alreadyHaveAccount": "Already have an account ?",
+    "dontHaveAccount": "Don't have an account ?"
+  }

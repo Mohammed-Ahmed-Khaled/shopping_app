@@ -16,10 +16,11 @@ class ProductGridView extends StatelessWidget {
         ),
         itemCount: products.length,
         itemBuilder: (ctx, index) {
+          var product = products[index];
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: ProductCard(
-              product: products[index],
+              product: product,
             ),
           );
         },

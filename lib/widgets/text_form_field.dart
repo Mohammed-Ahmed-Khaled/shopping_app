@@ -7,9 +7,9 @@ class TextFormFieldWidget extends StatelessWidget {
   final IconData? prefixIcon;
   final Widget? suffixIcon;
   final TextInputType? keyboardType;
-  bool obscureText;
+  final bool obscureText;
 
-  TextFormFieldWidget({
+  const TextFormFieldWidget({
     super.key,
     required this.labelText,
     required this.controller,

@@ -44,7 +44,7 @@ class _ProductCardState extends State<ProductCard> {
               onPressed: () {
                 CustomSnackBar.show(context, S.of(context).addedToCart);
               },
-              icon: widget.product.icon,
+              icon: const Icon(Icons.add_shopping_cart),
             ),
           ],
         ),
