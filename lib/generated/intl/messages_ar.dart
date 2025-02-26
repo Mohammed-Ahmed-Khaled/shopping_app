@@ -42,5 +42,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل ؟"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب ؟"),
+        "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
       };
 }

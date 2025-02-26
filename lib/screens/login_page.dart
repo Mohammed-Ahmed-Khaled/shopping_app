@@ -22,9 +22,18 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _passwordVisible = true;
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty || !value.contains('@')) {
@@ -42,6 +51,9 @@ class _LoginPageState extends State<LoginPage> {
 
   void _logIn() async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
       try {
         final credential =
             await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -59,7 +71,10 @@ class _LoginPageState extends State<LoginPage> {
           context,
           e.toString(),
         );
-        return;
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
       }
     }
   }
@@ -75,70 +90,73 @@ class _LoginPageState extends State<LoginPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.language),
-            onPressed: widget.toggleLanguage, // Toggle between languages
+            onPressed: widget.toggleLanguage,
           ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(10.0),
         child: Center(
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: [
-                TextFormFieldWidget(
-                  labelText: S.of(context).email,
-                  keyboardType: TextInputType.emailAddress,
-                  controller: _emailController,
-                  validator: _validateEmail,
-                  prefixIcon: Icons.email,
-                ),
-                SizedBox(height: 10),
-                TextFormFieldWidget(
-                  labelText: S.of(context).password,
-                  obscureText: _passwordVisible,
-                  controller: _passwordController,
-                  validator: _validatePassword,
-                  prefixIcon: Icons.lock,
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _passwordVisible = !_passwordVisible;
-                      });
-                    },
-                    icon: _passwordVisible
-                        ? const Icon(Icons.visibility_outlined)
-                        : const Icon(Icons.visibility_off_outlined),
+          child: _isLoading
+              ? const CircularProgressIndicator()
+              : Form(
+                  key: _formKey,
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      TextFormFieldWidget(
+                        labelText: S.of(context).email,
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        validator: _validateEmail,
+                        prefixIcon: Icons.email,
+                      ),
+                      SizedBox(height: 10),
+                      TextFormFieldWidget(
+                        labelText: S.of(context).password,
+                        obscureText: _passwordVisible,
+                        controller: _passwordController,
+                        validator: _validatePassword,
+                        prefixIcon: Icons.lock,
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
+                          icon: _passwordVisible
+                              ? const Icon(Icons.visibility_outlined)
+                              : const Icon(Icons.visibility_off_outlined),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: _logIn,
+                        child: Text(S.of(context).login),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(S.of(context).dontHaveAccount),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                AnimatedPageTransition(
+                                  page: SignUpPage(
+                                    toggleLanguage: widget.toggleLanguage,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Text(S.of(context).signUp),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _logIn,
-                  child: Text(S.of(context).login),
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(S.of(context).dontHaveAccount),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          AnimatedPageTransition(
-                            page: SignUpPage(
-                              toggleLanguage: widget.toggleLanguage,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Text(S.of(context).signUp),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );
